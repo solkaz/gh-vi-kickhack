@@ -1,0 +1,34 @@
+a.button {
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+  color: #fff;
+  display: inline-block;
+  text-decoration: none;
+  padding: -1em;
+  background: #83BCC5;
+  overflow: hidden;
+  padding-left: 1em;
+}
+a.button:after {
+  display: inline-block;
+  background: #659EA7;
+  content: ">>";
+  position: relative;
+  margin-left: 1em;
+  padding: .6em 1em;
+
+
+}
+a.button:hover {
+  background-color: #659EA7;
+
+}
+a.pink-button {
+    background: #FF424E;
+}
+a.pink-button:after {
+      background: #E21637;
+}
+a.pink-button:hover {
+  background-color: #FF424E;
+}
