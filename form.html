@@ -1,6 +1,6 @@
 
 <head>
-    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.css">
 </head>
 
 <div class="container">
@@ -42,6 +42,28 @@
 							</div>
 						</div>
                         <div class="row">
+                              <div class="col-md-6 form-group">
+                                <label for="person_race">Race</label>
+                                <select id="person_race" name="person_race" class="form-control">
+                                  <option value="Asian">Asian</option>
+                                  <option value="Black">Black</option>
+                                  <option value="Hispanic">Hispanic</option>
+                                  <option value="White">White</option>
+                                  <option value="Native Pacific Islander">Native Pacific Islander</option>
+                                  <option value="Native American">Native American</option>
+                                  <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                              <label for="person_gender">Gender</label>
+                              <select id="person_gender" name="person_gender" class="form-control">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="row">
                             <div class="col-sm-6 form-group">
                                 <label>Phone Number</label>
                                 <input type="text" placeholder="Enter Phone Number Here.." class="form-control">
@@ -49,6 +71,17 @@
                             <div class="col-sm-6 form-group">
                                 <label>Email Address</label>
                                 <input type="text" placeholder="Enter Email Address Here.." class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="checkboxes">Is the person a Veteran?</label>
+                              <div class="col-md-4">
+                                <label class="checkbox-inline" for="checkboxes-0">
+                                  <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Yes">
+                                  Yes
+                                </label>
+                              </div>
                             </div>
                         </div>
 					<button type="button" class="btn btn-lg btn-info">Submit</button>
