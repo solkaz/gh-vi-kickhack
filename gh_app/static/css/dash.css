@@ -1,0 +1,11 @@
+img {
+  width: 80px;
+}
+
+div .profile-crop {
+  object-fit: cover;
+  object-position: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
