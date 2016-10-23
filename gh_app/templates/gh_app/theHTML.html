@@ -4,7 +4,7 @@
 
 
     <script type="text/javascript" src="jquery-1.6.2.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&libraries=geolocation" type="text/javascript"></script>
     
 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -90,8 +90,13 @@
             });
 
             google.maps.event.addListener(marker, 'click', function() {
+              var the_lat= place.geometry.location.lat();
+              var the_lng= place.geometry.location.lng();
 
-              var contentString = place.name + "<br/> miles away";
+               var contentString = place.name + "<br /><a href = \"https://maps.google.com/maps/place/"+place.name + "/@"+the_lat+","+the_lng+"\" target=\"_blank\"> Open in new page </a>";
+
+               http://maps.google.com/maps/place/<name>/@<lat>,<long>,15z
+                //var contentString = place.name;
                 infowindow.setContent(contentString);
                 infowindow.open(mymap, this);
                 //alert("You clicked on "+place.name);
