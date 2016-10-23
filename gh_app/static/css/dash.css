@@ -9,3 +9,68 @@ div .profile-crop {
   width: 80px;
   border-radius: 50%;
 }
+
+.person_info {
+    padding: 0 10px 10px 10px;
+}
+
+.panel-footer {
+    margin-top: 20px;
+}
+
+.person_name {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.recent_loc {
+    color: #CCCCCC;
+    font-style: italic;
+}
+
+.need_price {
+    font-weight: bold;
+    margin: 10px;
+}
+
+.panel-body {
+    padding: 0;
+}
+
+.panel-info {
+    padding: 15px;
+}
+
+/* Action button */
+button.btn-help {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  background: #31682F;
+  border: none;
+  position: relative;
+  padding: 0.5em 1em;
+  border-radius: 0 5px 5px 5px;
+  overflow: hidden;
+  transition: border-radius 0s;
+}
+button.btn-help:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+  width: 0;
+  border-width: 12px;
+  border-color: #FFF rgba(255,255,255,0.3) rgba(255,255,255,0.3) #FFF;
+  border-radius: 0 0 5px 0;
+  transition: border-width .2s;
+}
+button.btn-help:hover {
+  border-radius: 5px;
+  transition-delay: .1s;
+}
+button.btn-help:hover:before {
+  border-width: 0px;
+}
