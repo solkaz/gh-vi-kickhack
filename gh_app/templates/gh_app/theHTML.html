@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+    <script type="text/javascript" src="jquery-1.6.2.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places" type="text/javascript"></script>
+    
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+   
+    <title>Map</title>
+    
+    <style>
+
+    #map{
+     	  height: 650px;
+        width: 1000px;
+    }
+
+    </style>
+  </head>
+
+  <body>
+
+    <input id="zipInput" type="number"/>
+  	<button id="demo" onclick="changeLocation()" type="button">Go</button>
+    <button id="myLoc" onclick="flyToMyLocation()" type="button"> My Location</button>
+
+    <div id="map"></div>
+    <div id="test"> </div>
+
+    <script>
+    		    //This script tag block goes to bottom of the webpage
+
+      	var curr_lat = 0;
+      	var curr_long = 0;
+        var zip = 0;
+
+		    var x = document.getElementById('test');
+
+        var mymap;
+        var infowindow;
+
+        function initMap(){
+
+                //38.627003, -90.199402 St. Louis area  (default)
+            var stl_coors = new google.maps.LatLng(38.627003, -90.199402);
+            var mapOptions = {
+                zoom: 12,
+                center: stl_coors,
+                //mapTypeId: 'terrain'
+            };
+
+            mymap = new google.maps.Map(document.getElementById('map'),
+            mapOptions);
+
+            infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService(mymap);
+            service.nearbySearch({
+                location: stl_coors,
+                radius: 10000,
+                keyword: 'homeless+shelter'
+            }, callback);
+
+                var image = 'https://www.google.com/mobile/images/gmm/blue_dot_mylocation.gif';
+                var beachMarker = new google.maps.Marker({
+                  position: {lat: 38.632499, lng: -90.227847},
+                  map: mymap,
+                  icon: image
+                });
+        }
+
+        function callback(results, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+              createMarker(results[i]);
+            }
+          }
+        }
+
+        function createMarker(place) {
+          var placeLoc = place.geometry.location;
+          var home_icon = "http://www.umassmed.edu/globalassets/global-images-and-files/images/icons/home-icon-gray.png"
+          var marker = new google.maps.Marker({
+              map: mymap,
+              position: place.geometry.location,
+              icon: home_icon
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+
+              var contentString = place.name + "<br/> miles away";
+                infowindow.setContent(contentString);
+                infowindow.open(mymap, this);
+                //alert("You clicked on "+place.name);
+              });
+        }
+
+        function changeLocation(){
+          var new_lat = 38.632499; 
+          var new_lng = -90.227847;
+          var myZip = document.getElementById('zipInput').value;
+          
+          var geocoder = new google.maps.Geocoder();
+          geocoder.geocode({ 'address': myZip }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    new_lat = results[0].geometry.location.lat();
+                    new_lng = results[0].geometry.location.lng();
+                } 
+                else {
+                    alert("Request failed.");
+                }
+
+                mymap.setCenter(new google.maps.LatLng(new_lat, new_lng));
+                mymap.setZoom(12);
+
+            
+                infowindow = new google.maps.InfoWindow();
+                var service = new google.maps.places.PlacesService(mymap);
+                service.nearbySearch({
+                    location: new google.maps.LatLng(new_lat, new_lng),
+                    radius: 10000,
+                    keyword: 'homeless+shelter'
+                }, callback);
+
+
+
+       /*         //from here
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                    var pos = {
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude
+                    };
+
+                  }, function() {
+                    handleLocationError(true, infoWindow, mymap.getCenter());
+                  });
+
+                //to here*/
+
+            });
+        }
+
+              //*this* arena location
+        function flyToMyLocation() {
+
+                mymap.setCenter(new google.maps.LatLng(38.632499, -90.227847));
+                mymap.setZoom(12);
+                var image = 'https://www.google.com/mobile/images/gmm/blue_dot_mylocation.gif';
+                var beachMarker = new google.maps.Marker({
+                  position: {lat: 38.632499, lng: -90.227847},
+                  map: mymap,
+                  icon: image
+                });
+        }
+
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-rOcfVyM_WepTQEdwU8hdfCXb7MggUXk&libraries=places&callback=initMap"> </script>
+
+  </body>
+</html>
